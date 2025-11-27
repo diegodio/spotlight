@@ -1,5 +1,3 @@
-import pandas as pd
-
 pontos_londrina = [
     {
         "nome": "Lago Igapó",
@@ -101,6 +99,44 @@ pontos_londrina = [
         "color": "purple",
         "tipo": "restaurante"
     },
+    {
+        "nome": "Bourbon Londrina Hotel",
+        "descricao": "Hotel de padrão alto, localizado na região central de Londrina.",
+        "latitude": -23.31167302508058,
+        "longitude": -51.16100315588057,
+        "icon": "bed",
+        "prefix": "fa",
+        "color": "orange",
+        "tipo": "hotel"
+    },
+    {
+        "nome": "Slaviero Essential Londrina Flat Hotel",
+        "descricao": "Hotel moderno com estrutura para estadias curtas e longas.",
+        "latitude": -23.315551072168827,
+        "longitude": -51.15998830430503,
+        "icon": "bed",
+        "prefix": "fa",
+        "color": "orange",
+        "tipo": "hotel"
+    },
+    {
+        "nome": "Hotel Boulevard",
+        "descricao": "Hotel tradicional localizado no centro de Londrina.",
+        "latitude": -23.311635001927584,
+        "longitude": -51.16517949081201,
+        "icon": "bed",
+        "prefix": "fa",
+        "color": "orange",
+        "tipo": "hotel"
+    },
+    {
+        "nome": "Hotel Thomasi",
+        "descricao": "Hotel acessível e funcional, próximo a vias importantes da cidade.",
+        "latitude": -23.300876525825842,
+        "longitude": -51.18452510245611,
+        "icon": "bed",
+        "prefix": "fa",
+        "color": "orange",
+        "tipo": "hotel"
+    }
 ]
-
-df = pd.DataFrame(pontos_londrina)
