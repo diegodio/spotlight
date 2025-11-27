@@ -28,4 +28,5 @@ def get_user_location():
         return location["coords"]["latitude"], location["coords"]["longitude"]
     
     else:
+        return (0,0)
         st.warning("Para continuar, permita o acesso à sua localização no navegador.")
