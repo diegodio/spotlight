@@ -9,11 +9,12 @@ def mostrar_mapa(user_location, pontos_turisticos_londrina):
         tiles="cartodb positron"
     )
 
-    folium.Marker(
-            location=[user_location["coords"]["latitude"], user_location["coords"]["longitude"]],
-            tooltip="user",
-            icon=folium.Icon(icon="map-marked", prefix="fa", color="green")
-        ).add_to(m)
+    if user_location:
+        folium.Marker(
+                location=[user_location["coords"]["latitude"], user_location["coords"]["longitude"]],
+                tooltip="user",
+                icon=folium.Icon(icon="map-marked", prefix="fa", color="green")
+            ).add_to(m)
     
 
     for dic in pontos_turisticos_londrina:
