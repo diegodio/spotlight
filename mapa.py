@@ -1,24 +1,36 @@
-import streamlit as st
+# mapa.py
 import folium
 from streamlit_folium import st_folium
 
-def mostrar_mapa(user_lat, user_lon, pontos_turisticos_londrina):
+DEFAULT_CENTER = [-23.2887, -51.2297]
+
+def criar_mapa(user_lat, user_lon, pontos_turisticos_londrina):
+    """
+    Cria e retorna o objeto folium.Map, sem renderizar no Streamlit.
+    """
+    # Se a localização do usuário for válida, usa como centro
+    if user_lat is not None and user_lon is not None:
+        center = [user_lat, user_lon]
+        zoom = 14
+    else:
+        center = DEFAULT_CENTER
+        zoom = 13
+
     m = folium.Map(
-        location=[-23.2887, -51.2297],
-        zoom_start=13,
+        location=center,
+        zoom_start=zoom,
         tiles="cartodb positron"
     )
 
-    try:
-        if user_lat and user_lon:
-            folium.Marker(
-                    location=[user_lat, user_lon],
-                    tooltip="user",
-                    icon=folium.Icon(icon="map-marked", prefix="fa", color="green")
-                ).add_to(m)
-    except:
-        st.warning("Para continuar, permita o acesso à sua localização no navegador.")
+    # Marcador do usuário, se existir
+    if user_lat is not None and user_lon is not None:
+        folium.Marker(
+            location=[user_lat, user_lon],
+            tooltip="Você está aqui",
+            icon=folium.Icon(icon="map-marked", prefix="fa", color="green")
+        ).add_to(m)
 
+    # Pontos turísticos
     for dic in pontos_turisticos_londrina:
         folium.Marker(
             location=[dic["latitude"], dic["longitude"]],
@@ -26,6 +38,12 @@ def mostrar_mapa(user_lat, user_lon, pontos_turisticos_londrina):
             icon=folium.Icon(icon=dic["icon"], prefix=dic["prefix"], color=dic["color"])
         ).add_to(m)
 
-    colA, colB, colC = st.columns(3)
-    with colB:
-        st_folium(m, width=700, height=500)
+    return m
+
+def mostrar_mapa(user_lat, user_lon, pontos_turisticos_londrina, height=500):
+    """
+    Conveniência: cria o mapa e já renderiza com st_folium.
+    O layout (colunas etc.) é decidido no app, não aqui.
+    """
+    m = criar_mapa(user_lat, user_lon, pontos_turisticos_londrina)
+    st_folium(m, use_container_width=True, height=height)
