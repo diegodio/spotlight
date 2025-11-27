@@ -1,10 +1,9 @@
-# gps.py
 from streamlit_js_eval import get_geolocation
 
 def get_user_location():
     """
-    Retorna (lat, lon) ou (None, None) se o usuário não deu permissão.
-    Não faz nenhuma chamada de UI (st.*).
+    Retorna (lat, lon) ou (None, None) se o usuário não deu permissão
+    ou se get_geolocation ainda não retornou nada.
     """
     location = get_geolocation()
 
