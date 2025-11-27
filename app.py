@@ -1,59 +1,56 @@
 import streamlit as st
-
-from splash import splash
-from mapa import mostrar_mapa
-from dados import pontos_turisticos_londrina
+from mapa import criar_mapa
+from dados import pontos_londrina
 from gps import get_user_location
+from streamlit_folium import st_folium
 
-st.set_page_config(
-    page_title="Spotlight",
-    page_icon="🔦",
-    layout="wide",
-)
 
-# --- Splash (uma vez por sessão) ---
-if "splash_done" not in st.session_state:
-    st.session_state.splash_done = False
+st.set_page_config(layout="wide", page_icon="icon.png", page_title="Spotlight")
 
-if not st.session_state.splash_done:
-    splash()
-    st.session_state.splash_done = True
-    st.stop()
 
-# --- Sidebar ---
 with st.sidebar:
-    st.header("Spotlight")
-    st.caption("Onde suas experiências brilham ✨")
+    st.write("Teste")
 
-# --- Localização ---
 user_lat, user_lon = get_user_location()
 
-if user_lat is None or user_lon is None:
-    st.warning("Para continuar, permita o acesso à sua localização no navegador.")
+if user_lat is None:
+    st.warning("⚠️ Para continuar, permita o acesso à sua localização no navegador.")
 
-# --- Barra de filtros ---
+
+# print(user_location["coords"]["latitude"])
+
 rowA = st.container()
 
 with rowA:
     colA, colB, colC = st.columns(3)
 
     with colA:
-        filtro_categorias = st.multiselect(
+        #filtro
+        options = st.multiselect(
             label="",
-            placeholder="Filtrar",
-            options=["Restaurantes", "Cultura", "Pontos Turísticos"],
+            placeholder = "Filtrar",
+            options = ["Restaurantes", "Cultura", "Pontos Turísticos"],
+            # default=["Yellow", "Red"],
         )
     with colB:
-        criterio_ordenacao = st.selectbox(
+        #classificar
+        options = st.selectbox(
             label="",
-            placeholder="Classificar",
-            options=["Proximidade", "Preço", "Avaliações"],
+            placeholder = "Classificar",
+            options = ["Proximidade", "Preço", "Avaliações"],
+            # default=["Yellow", "Red"],
         )
     
     with colC:
         st.markdown("")
         st.markdown("")
+
         st.markdown("\n X resultados")
 
-# --- Mapa ---
-mostrar_mapa(user_lat, user_lon, pontos_turisticos_londrina)
+mapa = criar_mapa(user_lat, user_lon, pontos_londrina)
+
+colA, colB, colC = st.columns(3)
+with colB:
+    st_folium(mapa, width=700, height=500)
+
+

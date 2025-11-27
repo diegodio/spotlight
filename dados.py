@@ -1,4 +1,6 @@
-pontos_turisticos_londrina = [
+import pandas as pd
+
+pontos_londrina = [
     {
         "nome": "Lago Igapó",
         "descricao": "Principal cartão-postal de Londrina, ideal para caminhadas, esportes ao ar livre e lazer.",
@@ -6,7 +8,8 @@ pontos_turisticos_londrina = [
         "longitude": -51.1720691,
         "icon": "tree",
         "prefix": "fa",
-        "color": "darkblue"
+        "color": "darkblue",
+        "tipo": "ponto_turistico"
     },
     {
         "nome": "Catedral Metropolitana de Londrina",
@@ -15,7 +18,8 @@ pontos_turisticos_londrina = [
         "longitude": -51.159634,
         "icon": "map-marked",
         "prefix": "fa",
-        "color": "red"
+        "color": "red",
+        "tipo": "cultura"
     },
     {
         "nome": "Jardim Botânico de Londrina",
@@ -24,7 +28,8 @@ pontos_turisticos_londrina = [
         "longitude": -51.1751885,
         "icon": "tree",
         "prefix": "fa",
-        "color": "darkblue"
+        "color": "darkblue",
+        "tipo": "ponto_turistico"
     },
     {
         "nome": "Museu Histórico Padre Carlos Weiss",
@@ -33,7 +38,8 @@ pontos_turisticos_londrina = [
         "longitude": -51.1596058,
         "icon": "map-marked",
         "prefix": "fa",
-        "color": "red"
+        "color": "red",
+        "tipo": "cultura"
     },
     {
         "nome": "Zerão (Complexo Esportivo José Antônio Basso)",
@@ -42,7 +48,8 @@ pontos_turisticos_londrina = [
         "longitude": -51.1640618,
         "icon": "map-marked",
         "prefix": "fa",
-        "color": "red"
+        "color": "red",
+        "tipo": "cultura"
     },
     {
         "nome": "Restaurante Barolo Londrina",
@@ -51,7 +58,8 @@ pontos_turisticos_londrina = [
         "longitude": -51.16654702217959,
         "icon": "utensils",
         "prefix": "fa",
-        "color": "purple"
+        "color": "purple",
+        "tipo": "restaurante"
     },
     {
         "nome": "Restaurante La Gondola",
@@ -60,7 +68,8 @@ pontos_turisticos_londrina = [
         "longitude": -51.172955087362304,
         "icon": "utensils",
         "prefix": "fa",
-        "color": "purple"
+        "color": "purple",
+        "tipo": "restaurante"
     },
     {
         "nome": "Restaurante Galpão Nobre",
@@ -69,7 +78,8 @@ pontos_turisticos_londrina = [
         "longitude": -51.165260846633686,
         "icon": "utensils",
         "prefix": "fa",
-        "color": "purple"
+        "color": "purple",
+        "tipo": "restaurante"
     },
     {
         "nome": "Restaurante Coco Bambu Londrina",
@@ -78,7 +88,8 @@ pontos_turisticos_londrina = [
         "longitude": -51.1848083889616,
         "icon": "utensils",
         "prefix": "fa",
-        "color": "purple"
+        "color": "purple",
+        "tipo": "restaurante"
     },
     {
         "nome": "Restaurante Bangkok Garden",
@@ -87,6 +98,9 @@ pontos_turisticos_londrina = [
         "longitude": -51.15744258896249,
         "icon": "utensils",
         "prefix": "fa",
-        "color": "purple"
+        "color": "purple",
+        "tipo": "restaurante"
     },
 ]
+
+df = pd.DataFrame(pontos_londrina)
