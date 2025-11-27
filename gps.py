@@ -7,7 +7,7 @@ def get_user_location():
     Não faz nenhuma chamada de UI (st.*).
     """
     location = get_geolocation()
-    
+
     if not location or "coords" not in location:
         return None, None
 
