@@ -20,10 +20,13 @@ from streamlit_js_eval import get_geolocation
     #     st.info("Clique em permitir acesso à localização no navegador.")
 
 def get_user_location():
+    
     location = get_geolocation()
-
-    if not location:
-        return None, None
-
-    coords = location.get("coords", {})
-    return coords.get("latitude"), coords.get("longitude")
+    
+    if location:
+         
+        return location["coords"]["latitude"], location["coords"]["longitude"]
+    
+    else:
+        return (0,0)
+        st.warning("Para continuar, permita o acesso à sua localização no navegador.")
