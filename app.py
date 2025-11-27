@@ -18,7 +18,8 @@ st.set_page_config(layout="wide")
 # splash()
 
 
-user_location = get_user_location()
+user_lat, user_lon = get_user_location()
+
 # print(user_location["coords"]["latitude"])
-mostrar_mapa(user_location, pontos_turisticos_londrina)
+mostrar_mapa(user_lat, user_lon, pontos_turisticos_londrina)
 
