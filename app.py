@@ -17,12 +17,11 @@ rowA = st.container()
 with rowA:
     colA, colB, colC = st.columns(3)
 
-    # --- MAPA DE LABEL -> tipo (dados.py) ---
     label_to_tipo = {
         "Restaurantes": "restaurante",
         "Cultura": "cultura",
         "Pontos Turísticos": "ponto_turistico",
-        "Hotéis": "hotel",  # se quiser incluir no filtro
+        "Hotéis": "hotel",  
     }
 
     with colA:
@@ -34,14 +33,14 @@ with rowA:
         )
 
     with colB:
-        # Classificar (ainda não implementado na lógica)
+        # Classificar (ainda não implementado)
         criterio_ordem = st.selectbox(
             label="",
             placeholder="Classificar",
             options=["Proximidade", "Preço", "Avaliações"],
         )
 
-    # --- APLICAR FILTRO SOBRE pontos_londrina ---
+    # APLICAR FILTRO SOBRE pontos_londrina
     if filtros_selecionados:
         tipos_selecionados = [label_to_tipo[lab] for lab in filtros_selecionados]
         pontos_filtrados = [
@@ -56,5 +55,4 @@ with rowA:
         st.markdown("")
         st.markdown(f"\n **{len(pontos_filtrados)} resultados**")
 
-# --- CHAMAR O MAPA COM A LISTA FILTRADA ---
 mostrar_mapa(user_lat, user_lon, pontos_filtrados)
