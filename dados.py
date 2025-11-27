@@ -1,3 +1,5 @@
+import pandas as pd
+
 pontos_londrina = [
     {
         "nome": "Lago Igapó",
@@ -140,3 +142,5 @@ pontos_londrina = [
         "tipo": "hotel"
     }
 ]
+
+df = pd.DataFrame(pontos_londrina)

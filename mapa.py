@@ -4,8 +4,8 @@ from streamlit_folium import st_folium
 
 def mostrar_mapa(user_lat, user_lon, pontos_turisticos_londrina):
     m = folium.Map(
-        location=[-23.2887, -51.2297],
-        zoom_start=13,
+        location=[-23.312160, -51.159634],
+        zoom_start=16,
         tiles="cartodb positron"
     )
 

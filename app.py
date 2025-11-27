@@ -7,42 +7,54 @@ from gps import get_user_location
 
 st.set_page_config(layout="wide", page_icon="icon.png", page_title="Spotlight")
 
-
 with st.sidebar:
     st.write("Teste")
 
 user_lat, user_lon = get_user_location()
-
-# print(user_location["coords"]["latitude"])
 
 rowA = st.container()
 
 with rowA:
     colA, colB, colC = st.columns(3)
 
+    # --- MAPA DE LABEL -> tipo (dados.py) ---
+    label_to_tipo = {
+        "Restaurantes": "restaurante",
+        "Cultura": "cultura",
+        "Pontos Turísticos": "ponto_turistico",
+        "Hotéis": "hotel",  # se quiser incluir no filtro
+    }
+
     with colA:
-        #filtro
-        options = st.multiselect(
+        # Filtro
+        filtros_selecionados = st.multiselect(
             label="",
-            placeholder = "Filtrar",
-            options = ["Restaurantes", "Cultura", "Pontos Turísticos"],
-            # default=["Yellow", "Red"],
+            placeholder="Filtrar",
+            options=list(label_to_tipo.keys()),
         )
+
     with colB:
-        #classificar
-        options = st.selectbox(
+        # Classificar (ainda não implementado na lógica)
+        criterio_ordem = st.selectbox(
             label="",
-            placeholder = "Classificar",
-            options = ["Proximidade", "Preço", "Avaliações"],
-            # default=["Yellow", "Red"],
+            placeholder="Classificar",
+            options=["Proximidade", "Preço", "Avaliações"],
         )
-    
+
+    # --- APLICAR FILTRO SOBRE pontos_londrina ---
+    if filtros_selecionados:
+        tipos_selecionados = [label_to_tipo[lab] for lab in filtros_selecionados]
+        pontos_filtrados = [
+            p for p in pontos_londrina if p["tipo"] in tipos_selecionados
+        ]
+    else:
+        # se nada selecionado, mostra tudo
+        pontos_filtrados = pontos_londrina
+
     with colC:
         st.markdown("")
         st.markdown("")
+        st.markdown(f"\n **{len(pontos_filtrados)} resultados**")
 
-        st.markdown("\n X resultados")
-
-
-mostrar_mapa(user_lat, user_lon, pontos_londrina)
-
+# --- CHAMAR O MAPA COM A LISTA FILTRADA ---
+mostrar_mapa(user_lat, user_lon, pontos_filtrados)
