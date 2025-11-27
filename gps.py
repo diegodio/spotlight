@@ -1,4 +1,4 @@
-# import streamlit as st
+import streamlit as st
 from streamlit_js_eval import get_geolocation
 
 # st.set_page_config(page_title="Localização do Usuário")
@@ -26,3 +26,6 @@ def get_user_location():
     if location:
          
         return location["coords"]["latitude"], location["coords"]["longitude"]
+    
+    else:
+        st.warning("Para continuar, permita o acesso à sua localização no navegador.")

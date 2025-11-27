@@ -9,13 +9,15 @@ def mostrar_mapa(user_lat, user_lon, pontos_turisticos_londrina):
         tiles="cartodb positron"
     )
 
-    if user_lat and user_lon:
-        folium.Marker(
-                location=[user_lat, user_lon],
-                tooltip="user",
-                icon=folium.Icon(icon="map-marked", prefix="fa", color="green")
-            ).add_to(m)
-    
+    try:
+        if user_lat and user_lon:
+            folium.Marker(
+                    location=[user_lat, user_lon],
+                    tooltip="user",
+                    icon=folium.Icon(icon="map-marked", prefix="fa", color="green")
+                ).add_to(m)
+    except:
+        st.warning("Para continuar, permita o acesso à sua localização no navegador.")
 
     for dic in pontos_turisticos_londrina:
         folium.Marker(
