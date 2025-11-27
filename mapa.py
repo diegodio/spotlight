@@ -23,7 +23,7 @@ def mostrar_mapa(user_lat, user_lon, pontos_turisticos_londrina):
         folium.Marker(
             location=[dic["latitude"], dic["longitude"]],
             tooltip=dic["nome"],
-            icon=folium.Icon(icon="map-marked", prefix="fa", color="red")
+            icon=folium.Icon(icon=dic["icon"], prefix=dic["prefix"], color=dic["color"])
         ).add_to(m)
 
     colA, colB, colC = st.columns(3)
