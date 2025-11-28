@@ -7,8 +7,11 @@ from gps import get_user_location
 
 st.set_page_config(layout="wide", page_icon="icon.png", page_title="Spotlight")
 
+st.logo(image="icon.png", size="medium", link=None, icon_image="icon.png")
+
+
 with st.sidebar:
-    st.write("Teste")
+    pass
 
 user_lat, user_lon = get_user_location()
 
@@ -23,8 +26,16 @@ with rowA:
         "Pontos Turísticos": "ponto_turistico",
         "Hotéis": "hotel",  
     }
+    with colA:
+        col_esq, col_dir = st.columns([4, 1])
+
+        with col_dir:
+            st.write("")
+            st.write("")
+            st.button("Spotlight")
 
     with colB:
+        
         # Filtro
         filtros_selecionados = st.multiselect(
             label="",
