@@ -19,12 +19,12 @@ with rowA:
 
     label_to_tipo = {
         "Restaurantes": "restaurante",
-        "Cultura": "cultura",
+        "Local histórico": "cultura",
         "Pontos Turísticos": "ponto_turistico",
         "Hotéis": "hotel",  
     }
 
-    with colA:
+    with colB:
         # Filtro
         filtros_selecionados = st.multiselect(
             label="",
@@ -32,13 +32,13 @@ with rowA:
             options=list(label_to_tipo.keys()),
         )
 
-    with colB:
-        # Classificar (ainda não implementado)
-        criterio_ordem = st.selectbox(
-            label="",
-            placeholder="Classificar",
-            options=["Proximidade", "Preço", "Avaliações"],
-        )
+    # with colB:
+    #     # Classificar (ainda não implementado)
+    #     criterio_ordem = st.selectbox(
+    #         label="",
+    #         placeholder="Classificar",
+    #         options=["Proximidade", "Preço", "Avaliações"],
+    #     )
 
     # APLICAR FILTRO SOBRE pontos_londrina
     if filtros_selecionados:
